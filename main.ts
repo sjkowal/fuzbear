@@ -18,6 +18,25 @@ namespace myTiles {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `
+    //% blockIdentity=images._tile
+    export const tile1 = img`
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f 1 f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f 1 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f 1 f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+`
 }
 scene.onHitWall(SpriteKind.Player, function (sprite) {
     if (mySprite.isHittingTile(CollisionDirection.Right) || mySprite.isHittingTile(CollisionDirection.Left)) {
@@ -39,7 +58,7 @@ let vx = 0
 let mySprite: Sprite = null
 scene.setBackgroundColor(7)
 tiles.setTilemap(tiles.createTilemap(
-            hex`1000100005050505050505050505050505050505050104040404040404040404040605050502050505050505050505050507050505020505050505050505050505070505050205050505050505050505050705050502050505050505050505050507050505020505050505050505050505070505050205050505050505050505050705050502050505050505050505050507050505020505050505050505050505070505050205050505050505050505050705050502050505050505050505050507050505020505050505050505050505070505050205050505050505050505050705050503090909090909090909090908050505050505050505050505050505050505`,
+            hex`100010000b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b`,
             img`
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
 2 . . . . . . . . . . . . . 2 . 
@@ -58,10 +77,10 @@ tiles.setTilemap(tiles.createTilemap(
 2 . . . . . . . . . . . . . 2 . 
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
 `,
-            [myTiles.tile0,sprites.dungeon.darkGroundNorthWest0,sprites.dungeon.darkGroundWest,sprites.dungeon.darkGroundSouthWest0,sprites.dungeon.darkGroundNorth,sprites.dungeon.darkGroundCenter,sprites.dungeon.darkGroundNorthEast0,sprites.dungeon.darkGroundEast,sprites.dungeon.darkGroundSouthEast0,sprites.dungeon.darkGroundSouth,sprites.dungeon.darkGroundNorthWest1],
+            [myTiles.tile0,sprites.dungeon.darkGroundNorthWest0,sprites.dungeon.darkGroundWest,sprites.dungeon.darkGroundSouthWest0,sprites.dungeon.darkGroundNorth,sprites.dungeon.darkGroundCenter,sprites.dungeon.darkGroundNorthEast0,sprites.dungeon.darkGroundEast,sprites.dungeon.darkGroundSouthEast0,sprites.dungeon.darkGroundSouth,sprites.dungeon.darkGroundNorthWest1,myTiles.tile1],
             TileScale.Sixteen
         ))
-let spriteImage1 = img`
+mySprite = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -78,10 +97,83 @@ let spriteImage1 = img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-`
-mySprite = sprites.create(spriteImage1, SpriteKind.Player)
+`, SpriteKind.Player)
 mySprite.setPosition(50, 50)
 vx = 35
 vy = 35
 mySprite.setVelocity(vx, vy)
 scene.cameraFollowSprite(mySprite)
+animation.runImageAnimation(
+mySprite,
+[img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . 8 . . . . . . . . . 
+. . . . . . . 8 . . . . . . . . 
+. . . . . . . 8 8 . . . . . . . 
+. . . . . . 8 9 8 8 . . . . . . 
+. . . . . . 8 8 9 8 . . . . . . 
+. . . . . . . 8 8 . . . . . . . 
+. . . . . . . . 8 . . . . . . . 
+. . . . . . . . . 8 . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`,img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . 8 . . . . . . . . . . . 
+. . . . 8 . . 8 8 . . . . . . . 
+. . . . . 8 8 8 9 8 . . . . . . 
+. . . . . . 8 9 8 8 8 . . . . . 
+. . . . . . . 8 8 . . 8 . . . . 
+. . . . . . . . . . . 8 . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`,img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . 8 8 . . 8 . . . . 
+. . . . . . 8 9 8 8 8 . . . . . 
+. . . . . 8 8 8 9 8 . . . . . . 
+. . . . 8 . . 8 8 . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`,img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . 8 8 . . . . . 
+. . . . . . . . 8 . . . . . . . 
+. . . . . . . 8 8 . . . . . . . 
+. . . . . . 8 8 9 8 . . . . . . 
+. . . . . . 8 9 8 8 . . . . . . 
+. . . . . . . 8 8 . . . . . . . 
+. . . . . . . 8 . . . . . . . . 
+. . . . . 8 8 . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`],
+100,
+true
+)

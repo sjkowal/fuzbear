@@ -1,7 +1,8 @@
 {
     "name": "fuzbear",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "animation": "*"
     },
     "description": "",
     "files": [
